@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>The Brand Store | Wear Your Attitude</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#home" class="brand-logo" data-nav="home">
+        <span class="brand-title">The Brand Store</span>
+        <span class="brand-tagline">Wear Your Attitude</span>
+      </a>
+
+      <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+
+      <nav id="mainNav" class="main-nav">
+        <a href="#home" data-nav="home"><i class="fas fa-home"></i> Home</a>
+        <a href="#shop" data-nav="shop"><i class="fas fa-search"></i> Shop</a>
+        <a href="#wishlist" data-nav="wishlist"><i class="far fa-heart"></i> Wishlist <span id="wishlistCount" class="cart-count">0</span></a>
+        <a href="#cart" data-nav="cart"><i class="fas fa-shopping-cart"></i> Cart <span id="cartCount" class="cart-count">0</span></a>
+        <a href="#checkout" data-nav="checkout"><i class="fas fa-check-circle"></i> Checkout</a>
+        <button id="authButton" class="btn btn-outline nav-btn" type="button"><i class="fas fa-user"></i> Login</button>
+        <button id="logoutButton" class="btn btn-danger nav-btn hidden" type="button"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        <a href="admin.html" class="admin-link"><i class="fas fa-lock"></i> Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="homeView" class="view active">
+      <section class="hero-section">
+        <div class="container hero-grid">
+          <div class="hero-content reveal-up">
+            <p class="eyebrow">Premium Fashion. Everyday Confidence.</p>
+            <h1>Own Every Look, <span>Wear Your Attitude</span></h1>
+            <p>
+              Discover luxury-inspired essentials from world-renowned labels at
+              <strong>The Brand Store</strong>, Near City Cart, Ghunghru Chauraha, Jhalwa, Prayagraj.
+            </p>
+            <div class="hero-actions">
+              <a href="#shop" class="btn btn-gold" data-nav="shop"><i class="fas fa-tshirt"></i> Explore Collection</a>
+              <a href="#brands" class="btn btn-outline"><i class="fas fa-tags"></i> Shop By Brand</a>
+            </div>
+          </div>
+          <div class="hero-card reveal-up delay-1">
+            <p class="hero-card-label"><i class="fas fa-star"></i> Curated Picks</p>
+            <h3>Luxury Streetwear Edit</h3>
+            <p>Season-ready T-Shirts, Polo Shirts, Shirts, Perfumes, Watches and Accessories.</p>
+            <p id="welcomeText" class="muted-small"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container reveal-up">
+        <div class="section-head">
+          <h2><i class="fas fa-images"></i> Live Banners</h2>
+          <p>Managed from admin marketing controls.</p>
+        </div>
+        <div id="bannerGrid" class="banner-grid"></div>
+      </section>
+
+      <section id="brands" class="section container reveal-up">
+        <div class="section-head">
+          <h2><i class="fas fa-building"></i> Brands Available</h2>
+          <p>Curated labels trusted for quality and style.</p>
+        </div>
+        <div class="brand-chips">
+          <button class="brand-chip" data-brand-filter="CK">CK</button>
+          <button class="brand-chip" data-brand-filter="Armani Exchange">Armani Exchange</button>
+          <button class="brand-chip" data-brand-filter="Lacoste">Lacoste</button>
+          <button class="brand-chip" data-brand-filter="Rare Rabbit">Rare Rabbit</button>
+          <button class="brand-chip" data-brand-filter="Maserati">Maserati</button>
+        </div>
+      </section>
+
+      <section class="section container reveal-up">
+        <div class="section-head">
+          <h2><i class="fas fa-fire"></i> Featured Products</h2>
+          <a href="#shop" data-nav="shop" class="text-link">View all <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div id="featuredGrid" class="product-grid"></div>
+      </section>
+    </section>
+
+    <section id="shopView" class="view">
+      <div class="container section">
+        <div class="section-head">
+          <h2><i class="fas fa-list"></i> Product Listing</h2>
+          <p>Filter by category, brand and budget.</p>
+        </div>
+
+        <div class="filters-grid">
+          <div class="field">
+            <label for="searchInput"><i class="fas fa-search"></i> Search</label>
+            <input id="searchInput" type="text" placeholder="Search products..." />
+          </div>
+          <div class="field">
+            <label for="categoryFilter"><i class="fas fa-folder"></i> Category</label>
+            <select id="categoryFilter"></select>
+          </div>
+          <div class="field">
+            <label for="brandFilter"><i class="fas fa-trademark"></i> Brand</label>
+            <select id="brandFilter"></select>
+          </div>
+          <div class="field">
+            <label for="priceFilter"><i class="fas fa-rupee-sign"></i> Price</label>
+            <select id="priceFilter">
+              <option value="all">All Ranges</option>
+              <option value="0-999">Under ₹1,000</option>
+              <option value="1000-1999">₹1,000 - ₹1,999</option>
+              <option value="2000-3499">₹2,000 - ₹3,499</option>
+              <option value="3500-99999">₹3,500+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="sortFilter"><i class="fas fa-sort"></i> Sort</label>
+            <select id="sortFilter">
+              <option value="featured">Featured</option>
+              <option value="priceAsc">Price: Low to High</option>
+              <option value="priceDesc">Price: High to Low</option>
+              <option value="ratingDesc">Top Rated</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="shopGrid" class="product-grid"></div>
+      </div>
+    </section>
+
+    <section id="productView" class="view">
+      <div class="container section">
+        <button id="backToShop" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Shop</button>
+        <div id="productDetail" class="product-detail"></div>
+      </div>
+    </section>
+
+    <section id="wishlistView" class="view">
+      <div class="container section">
+        <div class="section-head">
+          <h2><i class="fas fa-heart"></i> Your Wishlist</h2>
+          <p>Saved styles for your next purchase.</p>
+        </div>
+        <div id="wishlistGrid" class="product-grid"></div>
+      </div>
+    </section>
+
+    <section id="cartView" class="view">
+      <div class="container section">
+        <div class="section-head">
+          <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
+          <p>Review your selected items.</p>
+        </div>
+        <div id="cartItems" class="cart-items"></div>
+        <div id="cartSummary" class="cart-summary"></div>
+      </div>
+    </section>
+
+    <section id="checkoutView" class="view">
+      <div class="container section">
+        <div class="section-head">
+          <h2><i class="fas fa-credit-card"></i> Checkout</h2>
+          <p>Demo flow with order creation and admin tracking.</p>
+        </div>
+
+        <div class="checkout-grid">
+          <form id="checkoutForm" class="checkout-form">
+            <h3><i class="fas fa-truck"></i> Delivery Details</h3>
+            <div class="field"><label><i class="fas fa-user"></i> Full Name</label><input id="coName" type="text" required /></div>
+            <div class="field"><label><i class="fas fa-phone"></i> Phone Number</label><input id="coPhone" type="tel" required /></div>
+            <div class="field"><label><i class="fas fa-address-book"></i> Address</label><textarea id="coAddress" rows="3" required></textarea></div>
+            <div class="field"><label><i class="fas fa-city"></i> City</label><input id="coCity" type="text" value="Prayagraj" required /></div>
+            <div class="field"><label><i class="fas fa-map-pin"></i> Pincode</label><input id="coPincode" type="text" required /></div>
+
+            <h3><i class="fas fa-wallet"></i> Payment Method</h3>
+            <div class="payment-options">
+              <label><input type="radio" name="payment" value="Cash on Delivery" checked /> <i class="fas fa-money-bill-wave"></i> Cash on Delivery</label>
+              <label><input type="radio" name="payment" value="UPI (Demo)" /> <i class="fas fa-mobile-alt"></i> UPI (Demo)</label>
+              <label><input type="radio" name="payment" value="Card (Demo)" /> <i class="far fa-credit-card"></i> Card (Demo)</label>
+            </div>
+
+            <button class="btn btn-gold" type="submit"><i class="fas fa-check"></i> Place Order</button>
+          </form>
+
+          <aside id="checkoutSummary" class="checkout-summary"></aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Strip - Redesigned to be distinct -->
+    <section class="contact-strip">
+      <div class="container">
+        <div class="contact-strip-grid">
+          <div class="contact-strip-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-content">
+              <h4>Visit Our Store</h4>
+              <p>Near City Cart, Ghunghru Chauraha</p>
+              <p>Jhalwa, Prayagraj, UP</p>
+            </div>
+          </div>
+          <div class="contact-strip-item">
+            <div class="contact-icon">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div class="contact-content">
+              <h4>Customer Support</h4>
+              <p>7703021315</p>
+              <p>8858663383</p>
+              <p>support@thebrandstore.com</p>
+            </div>
+          </div>
+          <div class="contact-strip-item">
+            <div class="contact-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="contact-content">
+              <h4>Store Hours</h4>
+              <p>Mon - Sat: 10:00 AM - 9:00 PM</p>
+              <p>Sunday: 11:00 AM - 8:00 PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Proper Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-col footer-brand">
+          <h3>The Brand Store</h3>
+          <p class="footer-tagline">Wear Your Attitude</p>
+          <p class="footer-desc">Premium fashion destination offering curated collections from world-renowned brands. Quality, style, and confidence in every piece.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home" data-nav="home"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="#shop" data-nav="shop"><i class="fas fa-chevron-right"></i> Shop</a></li>
+            <li><a href="#wishlist" data-nav="wishlist"><i class="fas fa-chevron-right"></i> Wishlist</a></li>
+            <li><a href="#cart" data-nav="cart"><i class="fas fa-chevron-right"></i> Cart</a></li>
+            <li><a href="#checkout" data-nav="checkout"><i class="fas fa-chevron-right"></i> Checkout</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Categories</h4>
+          <ul class="footer-links">
+            <li><a href="#shop" data-category="T-Shirts"><i class="fas fa-chevron-right"></i> T-Shirts</a></li>
+            <li><a href="#shop" data-category="Polo Shirts"><i class="fas fa-chevron-right"></i> Polo Shirts</a></li>
+            <li><a href="#shop" data-category="Shirts"><i class="fas fa-chevron-right"></i> Shirts</a></li>
+            <li><a href="#shop" data-category="Perfumes"><i class="fas fa-chevron-right"></i> Perfumes</a></li>
+            <li><a href="#shop" data-category="Watches"><i class="fas fa-chevron-right"></i> Watches</a></li>
+            <li><a href="#shop" data-category="Accessories"><i class="fas fa-chevron-right"></i> Accessories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Terms & Conditions</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Shipping Policy</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Return & Refund</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Subscribe to get updates on new arrivals and exclusive offers.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email address" required />
+            <button type="submit" class="btn btn-gold"><i class="fas fa-paper-plane"></i> Subscribe</button>
+          </form>
+          <div class="footer-payment">
+            <p>We Accept:</p>
+            <div class="payment-icons">
+              <i class="fab fa-cc-visa"></i>
+              <i class="fab fa-cc-mastercard"></i>
+              <i class="fab fa-cc-amex"></i>
+              <i class="fab fa-cc-paypal"></i>
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 The Brand Store. All Rights Reserved. | Made with <i class="fas fa-heart" style="color: #e24a4a;"></i> in Prayagraj</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <span class="divider">|</span>
+          <a href="#">Terms</a>
+          <span class="divider">|</span>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="bottom-nav" id="bottomNav">
+    <a href="#home" class="bottom-nav-item" data-nav="home"><i class="fas fa-home"></i> <span>Home</span></a>
+    <a href="#shop" class="bottom-nav-item" data-nav="shop"><i class="fas fa-search"></i> <span>Shop</span></a>
+    <a href="#wishlist" class="bottom-nav-item" data-nav="wishlist">
+      <span class="nav-icon-wrapper">
+        <i class="far fa-heart"></i>
+        <span class="bottom-nav-badge" id="bottomWishlistCount">0</span>
+      </span>
+      <span>Wishlist</span>
+    </a>
+    <a href="#cart" class="bottom-nav-item" data-nav="cart">
+      <span class="nav-icon-wrapper">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="bottom-nav-badge" id="bottomCartCount">0</span>
+      </span>
+      <span>Cart</span>
+    </a>
+    <a href="#checkout" class="bottom-nav-item" data-nav="checkout"><i class="fas fa-check-circle"></i> <span>Checkout</span></a>
+  </nav>
+
+  <div id="authModal" class="modal hidden">
+    <div class="modal-card">
+      <div class="section-head">
+        <h2><i class="fas fa-user-circle"></i> User Account</h2>
+        <button id="closeAuthModal" class="btn btn-outline" type="button"><i class="fas fa-times"></i> Close</button>
+      </div>
+      <div class="auth-tabs">
+        <button id="showLoginTab" class="btn btn-outline" type="button"><i class="fas fa-sign-in-alt"></i> Login</button>
+        <button id="showRegisterTab" class="btn btn-outline" type="button"><i class="fas fa-user-plus"></i> Register</button>
+      </div>
+
+      <form id="loginUserForm" class="auth-form">
+        <div class="field"><label><i class="fas fa-envelope"></i> Email</label><input id="loginEmail" type="email" required /></div>
+        <div class="field"><label><i class="fas fa-lock"></i> Password</label><input id="loginPassword" type="password" required /></div>
+        <button class="btn btn-gold" type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
+      </form>
+
+      <form id="registerUserForm" class="auth-form hidden">
+        <div class="field"><label><i class="fas fa-user"></i> Full Name</label><input id="regName" type="text" required /></div>
+        <div class="field"><label><i class="fas fa-envelope"></i> Email</label><input id="regEmail" type="email" required /></div>
+        <div class="field"><label><i class="fas fa-phone"></i> Phone</label><input id="regPhone" type="tel" required /></div>
+        <div class="field"><label><i class="fas fa-key"></i> Password</label><input id="regPassword" type="password" minlength="6" required /></div>
+        <button class="btn btn-gold" type="submit"><i class="fas fa-user-plus"></i> Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

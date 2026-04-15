@@ -1,0 +1,154 @@
+﻿<!-- admin.html (no changes required but included for completeness) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | The Brand Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-body">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-title">The Brand Store</span>
+        <span class="brand-tagline">Admin Dashboard</span>
+      </a>
+      <a href="index.html" class="btn btn-outline">Back to Store</a>
+    </div>
+  </header>
+
+  <main class="admin-wrap">
+    <section id="loginCard" class="admin-card">
+      <h2>Admin Login</h2>
+      <p>Enter password to continue.</p>
+      <form id="loginForm" class="field" style="max-width: 380px;">
+        <label for="adminPassword">Password</label>
+        <input id="adminPassword" type="password" placeholder="Enter password" required />
+        <button class="btn btn-gold" type="submit">Login</button>
+      </form>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <section class="admin-card">
+        <div class="section-head"><h2>Analytics</h2><p>Mock insights from orders and users</p></div>
+        <div class="stats-grid" id="statsGrid"></div>
+        <div class="chart-wrap"><canvas id="salesChart" width="1000" height="320"></canvas></div>
+      </section>
+
+      <section class="admin-card" style="margin-top:1rem;">
+        <div class="section-head"><h2>Product Management</h2><p>Add, update and discounts</p></div>
+        <div class="admin-grid">
+          <form id="productForm">
+            <input id="productId" type="hidden" />
+            <div class="field"><label>Name</label><input id="name" required /></div>
+            <div class="field"><label>Category</label><select id="category"></select></div>
+            <div class="field"><label>Brand</label><select id="brand"></select></div>
+            <div class="field"><label>Price (₹)</label><input id="price" type="number" min="1" required /></div>
+            <div class="field"><label>Discount (%)</label><input id="discount" type="number" min="0" max="90" value="0" /></div>
+            <div class="field"><label>Description</label><textarea id="description" rows="3" required></textarea></div>
+            <div class="field"><label>Image URL</label><input id="imageUrl" placeholder="https://..." /></div>
+            <div class="field"><label>Or Upload Local Image</label><input id="imageFile" type="file" accept="image/*" /></div>
+            <div class="field"><label><input id="featured" type="checkbox" /> Featured product</label></div>
+            <div class="card-actions">
+              <button class="btn btn-gold" type="submit">Save Product</button>
+              <button id="clearForm" class="btn btn-outline" type="button">Clear</button>
+            </div>
+          </form>
+
+          <div>
+            <div class="section-head"><h2>Category Management</h2></div>
+            <form id="categoryForm" class="card-actions">
+              <input id="newCategory" placeholder="Add category" required />
+              <button class="btn btn-gold" type="submit">Add</button>
+            </form>
+            <div id="categoryList" class="brand-chips" style="margin-top:1rem;"></div>
+          </div>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Brand</th><th>Price</th><th>Discount</th><th>Final</th><th>Actions</th></tr></thead>
+            <tbody id="adminProductRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="admin-card" style="margin-top:1rem;">
+        <div class="section-head"><h2>Order Management</h2><p>Update status, cancel/refund simulation</p></div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Order</th><th>User</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+            <tbody id="orderRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="admin-card" style="margin-top:1rem;">
+        <div class="section-head"><h2>User Management</h2><p>View users and block/unblock</p></div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Visits</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="userRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="admin-card" style="margin-top:1rem;">
+        <div class="section-head"><h2>Marketing Controls</h2><p>Coupons, sales and banners</p></div>
+        <div class="admin-grid">
+          <div>
+            <h3>Create Coupon</h3>
+            <form id="couponForm">
+              <div class="field"><label>Code</label><input id="couponCode" required /></div>
+              <div class="field"><label>Type</label><select id="couponType"><option value="percent">Percent</option><option value="fixed">Fixed</option></select></div>
+              <div class="field"><label>Value</label><input id="couponValue" type="number" min="1" required /></div>
+              <div class="field"><label>Min Order (₹)</label><input id="couponMinOrder" type="number" min="0" value="0" /></div>
+              <div class="field"><label>Expiry (optional)</label><input id="couponExpiry" type="date" /></div>
+              <button class="btn btn-gold" type="submit">Create Coupon</button>
+            </form>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead><tr><th>Code</th><th>Rule</th><th>Status</th><th>Actions</th></tr></thead>
+                <tbody id="couponRows"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div>
+            <h3>Sale Controls</h3>
+            <form id="saleForm">
+              <div class="field"><label><input id="saleActive" type="checkbox" /> Activate global sale</label></div>
+              <div class="field"><label>Extra Discount (%)</label><input id="salePercent" type="number" min="0" max="40" value="0" /></div>
+              <div class="field"><label>Sale Label</label><input id="saleLabel" placeholder="Festival Sale" /></div>
+              <button class="btn btn-gold" type="submit">Save Sale Settings</button>
+            </form>
+
+            <h3 style="margin-top:1rem;">Banner Management</h3>
+            <form id="bannerForm">
+              <input id="bannerId" type="hidden" />
+              <div class="field"><label>Title</label><input id="bannerTitle" required /></div>
+              <div class="field"><label>Subtitle</label><input id="bannerSubtitle" required /></div>
+              <div class="field"><label>CTA Label</label><input id="bannerCta" required /></div>
+              <div class="field"><label>CTA Target Hash</label><input id="bannerTarget" value="shop" required /></div>
+              <div class="field"><label>Image URL</label><input id="bannerImage" required /></div>
+              <div class="card-actions"><button class="btn btn-gold" type="submit">Save Banner</button><button id="clearBannerForm" class="btn btn-outline" type="button">Clear</button></div>
+            </form>
+            <div id="bannerList" class="banner-grid" style="margin-top:1rem;"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="admin-card" style="margin-top:1rem;">
+        <button id="logoutBtn" class="btn btn-danger" type="button">Logout</button>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="admin.js"></script>
+</body>
+</html>
