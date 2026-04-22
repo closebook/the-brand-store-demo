@@ -1319,3 +1319,290 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Minimalist light theme overrides */
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --surface-2: #f2f2ef;
+  --text: #171717;
+  --muted: #6a6a6a;
+  --gold: #171717;
+  --gold-soft: #555555;
+  --line: #e6e6e1;
+  --white: #ffffff;
+}
+
+body {
+  color: var(--text);
+  background: var(--bg);
+}
+
+h1,
+h2,
+h3,
+h4,
+.brand-title,
+.hero-content h1,
+.hero-card h3,
+.section-head h2,
+.detail-info h2,
+.contact-content h4,
+.footer-col h3,
+.footer-col h4 {
+  font-family: "Manrope", sans-serif;
+}
+
+.site-header {
+  background: rgba(247, 247, 245, 0.95);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand-logo,
+.brand-title {
+  color: var(--text);
+}
+
+.brand-tagline {
+  color: var(--muted);
+}
+
+.main-nav a:hover,
+.text-link,
+.section-head h2 i,
+.rating-line {
+  color: var(--text);
+}
+
+.cart-count {
+  background: #171717;
+  color: #fff;
+}
+
+.hero-content,
+.hero-card,
+.filters-grid,
+.product-detail,
+.cart-row,
+.cart-summary,
+.checkout-summary,
+.checkout-form,
+.admin-card,
+.stat-card,
+.chart-wrap,
+.modal-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 24px rgba(17, 17, 17, 0.04);
+}
+
+.hero-content h1 span {
+  color: var(--text);
+}
+
+.brand-chip {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+}
+
+.brand-chip:hover {
+  border-color: #cfcfc6;
+}
+
+.product-card {
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.product-card:hover {
+  border-color: #d7d7cf;
+}
+
+.btn {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+}
+
+.btn-gold {
+  background: #171717;
+  border-color: #171717;
+  color: #fff;
+}
+
+.btn-outline {
+  border-color: #d6d6cf;
+  background: #fff;
+  color: var(--text);
+}
+
+.btn-danger {
+  border-color: #efcdcd;
+  color: #b33636;
+  background: #fff5f5;
+}
+
+.field input,
+.field select,
+.field textarea,
+.coupon-row input,
+.newsletter-form input {
+  background: #fff;
+  color: var(--text);
+  border: 1px solid #dcdcd4;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.coupon-row input:focus,
+.newsletter-form input:focus {
+  outline: none;
+  border-color: #bcbcb2;
+}
+
+.qty-btn {
+  border: 1px solid #d8d8d0;
+  background: #fff;
+  color: var(--text);
+}
+
+.contact-strip {
+  background: #f2f2ef;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-strip::before {
+  background: none;
+}
+
+.contact-icon {
+  background: #171717;
+}
+
+.contact-icon i {
+  color: #fff;
+}
+
+.contact-content h4 {
+  color: var(--text);
+}
+
+.site-footer {
+  background: #efefea;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+}
+
+.footer-col h3,
+.footer-col h4 {
+  color: var(--text);
+}
+
+.footer-col h4::after {
+  background: #c5c5bc;
+}
+
+.footer-social a {
+  background: #fff;
+  border: 1px solid #d7d7cf;
+  color: var(--text);
+}
+
+.footer-social a:hover {
+  background: #171717;
+  color: #fff;
+  border-color: #171717;
+}
+
+.footer-links a,
+.footer-links a i,
+.footer-bottom,
+.footer-bottom-links a,
+.footer-bottom-links .divider,
+.payment-icons {
+  color: var(--muted);
+}
+
+.footer-links a:hover,
+.footer-bottom-links a:hover,
+.payment-icons i:hover {
+  color: var(--text);
+}
+
+.footer-bottom {
+  border-top: 1px solid #d9d9d2;
+}
+
+.bottom-nav {
+  background: rgba(247, 247, 245, 0.98);
+  border-top: 1px solid var(--line);
+}
+
+.bottom-nav-item {
+  color: #767676;
+}
+
+.bottom-nav-item:hover,
+.bottom-nav-item:active,
+.bottom-nav-item.active {
+  background: #ecece8;
+  color: var(--text);
+}
+
+.bottom-nav-badge {
+  background: #171717;
+  color: #fff;
+  border: 2px solid #f7f7f5;
+}
+
+.toast {
+  background: #fff;
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+
+.main-nav {
+  background: #fff;
+}
+
+.sticky-add-cart {
+  background: #fff;
+  border-top: 1px solid var(--line);
+}
+
+.banner-card p {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.wish-btn {
+  border: 1px solid #d0d0c8;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text);
+}
+
+.wish-btn.active {
+  color: #c64545;
+  border-color: #e8bcbc;
+}
+
+.review-box {
+  border-top: 1px solid #e2e2dc;
+}
+
+.review-item {
+  border: 1px solid #e1e1da;
+  background: #fff;
+}
+
+.modal {
+  background: rgba(23, 23, 23, 0.36);
+}
+
+.admin-table th,
+.admin-table td {
+  border-bottom: 1px solid #e5e5dd;
+}
