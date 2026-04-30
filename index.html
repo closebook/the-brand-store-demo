@@ -18,14 +18,25 @@
         <span class="brand-tagline">Wear Your Attitude</span>
       </a>
 
-      <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+      <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" type="button"><i class="fas fa-bars"></i></button>
 
       <nav id="mainNav" class="main-nav">
-        <a href="#home" data-nav="home"><i class="fas fa-home"></i> Home</a>
-        <a href="#shop" data-nav="shop"><i class="fas fa-search"></i> Shop</a>
-        <a href="#wishlist" data-nav="wishlist"><i class="far fa-heart"></i> Wishlist <span id="wishlistCount" class="cart-count">0</span></a>
-        <a href="#cart" data-nav="cart"><i class="fas fa-shopping-cart"></i> Cart <span id="cartCount" class="cart-count">0</span></a>
-        <a href="#checkout" data-nav="checkout"><i class="fas fa-check-circle"></i> Checkout</a>
+        <a href="#home" data-nav="home"><i class="fas fa-home"></i> <span>Home</span></a>
+        <div class="nav-dropdown">
+          <a href="#shop" data-nav="shop"><i class="fas fa-bag-shopping"></i> <span>Shop</span> <i class="fas fa-chevron-down nav-caret"></i></a>
+          <div class="nav-dropdown-menu">
+            <a href="#shop" data-category="T-Shirts"><i class="fas fa-shirt"></i> T-Shirts</a>
+            <a href="#shop" data-category="Polo Shirts"><i class="fas fa-tags"></i> Polo Shirts</a>
+            <a href="#shop" data-category="Shirts"><i class="fas fa-user-tie"></i> Shirts</a>
+            <a href="#shop" data-category="Perfumes"><i class="fas fa-spray-can-sparkles"></i> Perfumes</a>
+            <a href="#shop" data-category="Watches"><i class="far fa-clock"></i> Watches</a>
+            <a href="#shop" data-category="Accessories"><i class="fas fa-wallet"></i> Accessories</a>
+          </div>
+        </div>
+        <a href="#brands"><i class="fas fa-tags"></i> <span>Brands</span></a>
+        <a href="#wishlist" data-nav="wishlist"><i class="far fa-heart"></i> <span>Wishlist</span> <span id="wishlistCount" class="cart-count">0</span></a>
+        <a href="#cart" data-nav="cart"><i class="fas fa-shopping-cart"></i> <span>Cart</span> <span id="cartCount" class="cart-count">0</span></a>
+        <a href="#checkout" data-nav="checkout"><i class="fas fa-check-circle"></i> <span>Checkout</span></a>
         <button id="authButton" class="btn btn-outline nav-btn" type="button"><i class="fas fa-user"></i> Login</button>
         <button id="logoutButton" class="btn btn-danger nav-btn hidden" type="button"><i class="fas fa-sign-out-alt"></i> Logout</button>
         <a href="admin.html" class="admin-link"><i class="fas fa-lock"></i> Admin</a>
@@ -60,10 +71,11 @@
 
       <section class="section container reveal-up">
         <div class="section-head">
-          <h2><i class="fas fa-images"></i> Live Banners</h2>
-          <p>Managed from admin marketing controls.</p>
+          <h2><i class="fas fa-images"></i> Latest Offers</h2>
+          <p>Fresh store highlights and seasonal edits.</p>
         </div>
-        <div id="bannerGrid" class="banner-grid"></div>
+        <div id="bannerSlider" class="banner-slider"></div>
+        <div id="bannerDots" class="banner-dots" aria-label="Banner controls"></div>
       </section>
 
       <section id="brands" class="section container reveal-up">
@@ -86,6 +98,14 @@
           <a href="#shop" data-nav="shop" class="text-link">View all <i class="fas fa-arrow-right"></i></a>
         </div>
         <div id="featuredGrid" class="product-grid"></div>
+      </section>
+
+      <section class="section container reveal-up">
+        <div class="section-head">
+          <h2><i class="fas fa-store"></i> Shop Products</h2>
+          <p>Browse the products available in store.</p>
+        </div>
+        <div id="homeProductGrid" class="product-grid"></div>
       </section>
     </section>
 

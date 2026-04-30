@@ -37,6 +37,8 @@
   const read = (k, f) => { try { const raw = localStorage.getItem(k); return raw ? JSON.parse(raw) : f; } catch (_) { return f; } };
   const write = (k, v) => localStorage.setItem(k, JSON.stringify(v));
   const money = (n) => `₹${Number(n).toLocaleString("en-IN")}`;
+  let currentBannerIndex = 0;
+  let bannerTimer = null;
 
   function showToast(message) {
     const toast = $("toast");
@@ -227,6 +229,11 @@
     $("featuredGrid").innerHTML = getProducts().filter((p) => p.featured).slice(0, 4).map(productCard).join("");
   }
 
+  function renderHomeProducts() {
+    const list = getProducts().slice(0, 8);
+    $("homeProductGrid").innerHTML = list.length ? list.map(productCard).join("") : "<p>No products available yet.</p>";
+  }
+
   function renderShop() {
     const list = filterProducts();
     $("shopGrid").innerHTML = list.length ? list.map(productCard).join("") : "<p>No products found.</p>";
@@ -240,12 +247,34 @@
 
   function renderBanners() {
     const banners = getMarketing().banners || [];
-    $("bannerGrid").innerHTML = banners.map((b) => `
-      <article class="banner-card" style="background-image:linear-gradient(120deg, rgba(0,0,0,.75), rgba(0,0,0,.35)),url('${b.image}');">
-        <h3>${b.title}</h3><p>${b.subtitle}</p>
-        <a href="#${b.ctaTarget || "shop"}" data-nav="${b.ctaTarget || "shop"}" class="btn btn-gold"><i class="fas fa-arrow-right"></i> ${b.ctaLabel || "Explore"}</a>
+    const safeBanners = banners.length ? banners : DEFAULT_MARKETING.banners;
+    if (currentBannerIndex >= safeBanners.length) currentBannerIndex = 0;
+    $("bannerSlider").innerHTML = safeBanners.map((b, index) => `
+      <article class="banner-slide ${index === currentBannerIndex ? "active" : ""}" style="background-image:linear-gradient(120deg, rgba(0,0,0,.76), rgba(0,0,0,.26)),url('${b.image}');">
+        <h3>${b.title}</h3>
+        <p>${b.subtitle}</p>
+        <a href="#${b.ctaTarget || "shop"}" data-nav="${b.ctaTarget || "shop"}" class="btn btn-gold"><i class="fas fa-arrow-right"></i> ${b.ctaLabel || "Shop Now"}</a>
       </article>
     `).join("");
+    $("bannerDots").innerHTML = safeBanners.map((_, index) => `
+      <button class="banner-dot ${index === currentBannerIndex ? "active" : ""}" data-banner-index="${index}" type="button" aria-label="Show banner ${index + 1}"></button>
+    `).join("");
+    startBannerAutoPlay(safeBanners.length);
+  }
+
+  function showBanner(index) {
+    const slides = document.querySelectorAll(".banner-slide");
+    const dots = document.querySelectorAll(".banner-dot");
+    if (!slides.length) return;
+    currentBannerIndex = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle("active", i === currentBannerIndex));
+    dots.forEach((dot, i) => dot.classList.toggle("active", i === currentBannerIndex));
+  }
+
+  function startBannerAutoPlay(total) {
+    if (bannerTimer) clearInterval(bannerTimer);
+    if (total <= 1) return;
+    bannerTimer = setInterval(() => showBanner(currentBannerIndex + 1), 4200);
   }
 
   function couponMeta(subtotal) {
@@ -376,16 +405,24 @@
     Object.values(views).forEach((id) => $(id).classList.remove("active"));
     $(views[name]).classList.add("active");
     if (name === "shop") renderShop();
+    if (name === "home") renderHomeProducts();
     if (name === "wishlist") renderWishlist();
     if (name === "cart") renderCart();
     if (name === "checkout") renderCheckoutSummary();
     highlightBottomNav(name);
+    highlightMainNav(name);
   }
 
   function highlightBottomNav(viewName) {
     document.querySelectorAll('.bottom-nav-item').forEach(link => {
       link.classList.remove('active');
       if (link.dataset.nav === viewName) link.classList.add('active');
+    });
+  }
+
+  function highlightMainNav(viewName) {
+    document.querySelectorAll('.main-nav [data-nav]').forEach(link => {
+      link.classList.toggle('active', link.dataset.nav === viewName);
     });
   }
 
@@ -418,7 +455,7 @@
     if (users.some((u) => u.email === email)) return showToast("Email already registered");
     const user = { id: `u${Date.now()}`, name, email, phone, password, blocked: false, createdAt: new Date().toISOString(), visits: 1 };
     users.push(user); setUsers(users); setSession(user.id); hideAuthModal();
-    updateAuthUi(); updateCartCount(); updateWishlistCount(); renderShop(); renderFeatured(); renderWishlist();
+    updateAuthUi(); updateCartCount(); updateWishlistCount(); renderShop(); renderFeatured(); renderHomeProducts(); renderWishlist();
     showToast("Registration successful");
   }
 
@@ -432,7 +469,7 @@
     if (user.blocked) return showToast("Your account is blocked");
     user.visits = Number(user.visits || 0) + 1;
     setUsers(users); setSession(user.id); hideAuthModal();
-    updateAuthUi(); updateCartCount(); updateWishlistCount(); renderShop(); renderFeatured(); renderWishlist();
+    updateAuthUi(); updateCartCount(); updateWishlistCount(); renderShop(); renderFeatured(); renderHomeProducts(); renderWishlist();
     showToast("Login successful");
   }
 
@@ -477,7 +514,7 @@
       if (add) { if (mustLogin("add items to cart")) return; const id = add.dataset.addCart; const cart = getCart(); const existing = cart.find((i) => i.productId === id); existing ? existing.qty++ : cart.push({ productId: id, qty: 1 }); setCart(cart); renderCart(); renderCheckoutSummary(); showToast("Added to cart"); }
 
       const wish = e.target.closest("[data-wish-toggle]");
-      if (wish) { if (mustLogin("manage wishlist")) return; const id = wish.dataset.wishToggle; const list = getWishlist(); setWishlist(list.includes(id) ? list.filter((x) => x !== id) : [...list, id]); renderShop(); renderFeatured(); renderWishlist(); if (location.hash.startsWith("#product-")) renderProductDetail(location.hash.replace("#product-", "")); showToast("Wishlist updated"); }
+      if (wish) { if (mustLogin("manage wishlist")) return; const id = wish.dataset.wishToggle; const list = getWishlist(); setWishlist(list.includes(id) ? list.filter((x) => x !== id) : [...list, id]); renderShop(); renderFeatured(); renderHomeProducts(); renderWishlist(); if (location.hash.startsWith("#product-")) renderProductDetail(location.hash.replace("#product-", "")); showToast("Wishlist updated"); }
 
       const view = e.target.closest("[data-view-product]");
       if (view) location.hash = `product-${view.dataset.viewProduct}`;
@@ -489,7 +526,7 @@
       if (qty) { const cart = getCart(); const item = cart.find((i) => i.productId === qty.dataset.pid); if (item) { item.qty += Number(qty.dataset.qty); if (item.qty <= 0) setCart(cart.filter((i) => i.productId !== qty.dataset.pid)); else setCart(cart); renderCart(); renderCheckoutSummary(); } }
 
       const nav = e.target.closest("[data-nav]");
-      if (nav) { e.preventDefault(); location.hash = nav.dataset.nav; if (window.innerWidth <= 760) $("mainNav").classList.remove("open"); }
+      if (nav) { e.preventDefault(); location.hash = nav.dataset.nav; if (window.innerWidth <= 760) { $("mainNav").classList.remove("open"); $("mobileMenuBtn").setAttribute("aria-expanded", "false"); } }
 
       const chip = e.target.closest("[data-brand-filter]");
       if (chip) { location.hash = "shop"; setTimeout(() => { $("brandFilter").value = chip.dataset.brandFilter; renderShop(); }, 10); }
@@ -507,7 +544,14 @@
 
       if (e.target.id === "goCart") location.hash = "cart";
       if (e.target.id === "backToShop") location.hash = "shop";
-      if (e.target.id === "mobileMenuBtn") $("mainNav").classList.toggle("open");
+      const mobileToggle = e.target.closest("#mobileMenuBtn");
+      if (mobileToggle) {
+        const isOpen = $("mainNav").classList.toggle("open");
+        mobileToggle.setAttribute("aria-expanded", String(isOpen));
+        mobileToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+      }
+      const bannerDot = e.target.closest("[data-banner-index]");
+      if (bannerDot) { showBanner(Number(bannerDot.dataset.bannerIndex)); startBannerAutoPlay(document.querySelectorAll(".banner-slide").length); }
       if (e.target.id === "authButton") getCurrentUser() ? showToast("Already logged in") : showAuthModal("login");
       if (e.target.id === "logoutButton") logoutUser();
       if (e.target.id === "closeAuthModal") hideAuthModal();
@@ -553,7 +597,7 @@
         const user = getCurrentUser();
         const reviews = getReviews();
         reviews.push({ id: `r${Date.now()}`, productId: pid, userId: user.id, userName: user.name, rating, comment, createdAt: new Date().toISOString() });
-        setReviews(reviews); renderProductDetail(pid); renderShop(); renderFeatured(); showToast("Review submitted");
+        setReviews(reviews); renderProductDetail(pid); renderShop(); renderFeatured(); renderHomeProducts(); showToast("Review submitted");
       }
       if (e.target.classList.contains("newsletter-form")) {
         e.preventDefault();
@@ -563,7 +607,7 @@
     ["searchInput", "categoryFilter", "brandFilter", "priceFilter", "sortFilter"].forEach((id) => $(id).addEventListener(id === "searchInput" ? "input" : "change", renderShop));
     window.addEventListener("hashchange", route);
     window.addEventListener("resize", () => { if (location.hash.startsWith("#product-")) renderProductDetail(location.hash.replace("#product-", "")); });
-    window.addEventListener("storage", () => { fillFilters(); updateAuthUi(); updateCartCount(); updateWishlistCount(); renderBanners(); renderFeatured(); renderShop(); renderWishlist(); renderCart(); renderCheckoutSummary(); route(); });
+    window.addEventListener("storage", () => { fillFilters(); updateAuthUi(); updateCartCount(); updateWishlistCount(); renderBanners(); renderFeatured(); renderHomeProducts(); renderShop(); renderWishlist(); renderCart(); renderCheckoutSummary(); route(); });
   }
 
   function init() {
@@ -574,6 +618,7 @@
     updateWishlistCount();
     renderBanners();
     renderFeatured();
+    renderHomeProducts();
     renderShop();
     renderWishlist();
     renderCart();
