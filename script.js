@@ -200,7 +200,8 @@
       authBtn.innerHTML = `<i class="fas fa-user"></i> Login`;
     }
     $("logoutButton").classList.toggle("hidden", !user);
-    $("welcomeText").textContent = user ? `Welcome back, ${user.name}.` : "Sign in to save wishlist and write reviews.";
+    const welcomeText = $("welcomeText");
+    if (welcomeText) welcomeText.textContent = user ? `Welcome back, ${user.name}.` : "Sign in to save wishlist and write reviews.";
   }
 
   function updateCartCount() {
@@ -521,6 +522,7 @@
     if (hash.startsWith("product-")) {
       showView("product");
       renderProductDetail(hash.replace("product-", ""));
+      window.scrollTo({ top: 0, behavior: "auto" });
       return;
     }
     showView(["home", "shop", "wishlist", "cart", "checkout"].includes(hash) ? hash : "home");
