@@ -46,7 +46,18 @@
 
   <main>
     <section id="homeView" class="view active">
-      <section class="hero-section">
+      <section class="home-banner-hero reveal-up">
+        <div id="bannerSlider" class="banner-slider"></div>
+        <div class="banner-hero-footer">
+          <div id="bannerDots" class="banner-dots" aria-label="Banner controls"></div>
+          <a href="#homeIntro" class="scroll-cue" aria-label="Scroll to content">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+          </a>
+        </div>
+      </section>
+
+      <section id="homeIntro" class="hero-section">
         <div class="container hero-grid">
           <div class="hero-content reveal-up">
             <p class="eyebrow">Premium Fashion. Everyday Confidence.</p>
@@ -67,15 +78,6 @@
             <p id="welcomeText" class="muted-small"></p>
           </div>
         </div>
-      </section>
-
-      <section class="section container reveal-up">
-        <div class="section-head">
-          <h2><i class="fas fa-images"></i> Latest Offers</h2>
-          <p>Fresh store highlights and seasonal edits.</p>
-        </div>
-        <div id="bannerSlider" class="banner-slider"></div>
-        <div id="bannerDots" class="banner-dots" aria-label="Banner controls"></div>
       </section>
 
       <section id="brands" class="section container reveal-up">

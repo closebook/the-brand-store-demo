@@ -17,12 +17,12 @@
   const BRANDS = ["CK", "Armani Exchange", "Lacoste", "Rare Rabbit", "Maserati"];
   const DEFAULT_CATEGORIES = ["T-Shirts", "Polo Shirts", "Shirts", "Perfumes", "Watches", "Accessories"];
   const DEFAULT_PRODUCTS = [
-    { id: "p1", name: "CK Signature Tee", category: "T-Shirts", brand: "CK", price: 1499, discount: 15, description: "Soft cotton T-shirt with a premium fit.", images: ["https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"], featured: true },
-    { id: "p2", name: "Armani Exchange Polo", category: "Polo Shirts", brand: "Armani Exchange", price: 2499, discount: 10, description: "Refined polo shirt for smart-casual style.", images: ["https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80"], featured: true },
-    { id: "p3", name: "Lacoste White Shirt", category: "Shirts", brand: "Lacoste", price: 2899, discount: 20, description: "Crisp and breathable tailored shirt.", images: ["https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=800&q=80"], featured: false },
-    { id: "p4", name: "Rare Rabbit Noir Perfume", category: "Perfumes", brand: "Rare Rabbit", price: 3299, discount: 12, description: "Sophisticated fragrance with woody notes.", images: ["https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"], featured: true },
-    { id: "p5", name: "Maserati Chrono Watch", category: "Watches", brand: "Maserati", price: 5499, discount: 18, description: "Bold chronograph watch with luxury finish.", images: ["https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=800&q=80"], featured: true },
-    { id: "p6", name: "CK Leather Wallet", category: "Accessories", brand: "CK", price: 1299, discount: 0, description: "Compact leather wallet with subtle branding.", images: ["https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=800&q=80"], featured: false }
+    { id: "p1", name: "CK Signature Tee", category: "T-Shirts", brand: "CK", price: 1499, discount: 15, description: "Soft cotton T-shirt with a premium fit.", images: ["https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"], featured: true, fabric: "100% combed cotton jersey", fit: "Regular fit", washCare: "Machine wash cold, wash inside out, dry in shade", sizes: ["S", "M", "L", "XL"], color: "White", sku: "TBS-CK-TEE-01", origin: "India", returnPolicy: "7 day exchange on unused items", technicalDetails: ["180 GSM breathable knit", "Ribbed crew neck", "Pre-shrunk finish"] },
+    { id: "p2", name: "Armani Exchange Polo", category: "Polo Shirts", brand: "Armani Exchange", price: 2499, discount: 10, description: "Refined polo shirt for smart-casual style.", images: ["https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80"], featured: true, fabric: "Cotton-rich pique knit", fit: "Smart regular fit", washCare: "Gentle machine wash, do not bleach", sizes: ["M", "L", "XL", "XXL"], color: "Navy", sku: "TBS-AX-POLO-02", origin: "India", returnPolicy: "7 day exchange on unused items", technicalDetails: ["Textured pique surface", "Two-button placket", "Rib collar and cuffs"] },
+    { id: "p3", name: "Lacoste White Shirt", category: "Shirts", brand: "Lacoste", price: 2899, discount: 20, description: "Crisp and breathable tailored shirt.", images: ["https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=800&q=80"], featured: false, fabric: "Cotton poplin blend", fit: "Tailored fit", washCare: "Machine wash cold, warm iron if needed", sizes: ["S", "M", "L", "XL"], color: "White", sku: "TBS-LC-SHIRT-03", origin: "India", returnPolicy: "7 day exchange on unused items", technicalDetails: ["Spread collar", "Buttoned cuffs", "Smooth poplin handfeel"] },
+    { id: "p4", name: "Rare Rabbit Noir Perfume", category: "Perfumes", brand: "Rare Rabbit", price: 3299, discount: 12, description: "Sophisticated fragrance with woody notes.", images: ["https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=80"], featured: true, fabric: "Eau de parfum", fit: "Long-lasting fragrance", washCare: "Store in a cool, dry place away from sunlight", sizes: ["100 ml"], color: "Woody amber", sku: "TBS-RR-PERF-04", origin: "India", returnPolicy: "No return once seal is opened", technicalDetails: ["Top notes: citrus spice", "Heart notes: amber woods", "Base notes: musk and cedar"] },
+    { id: "p5", name: "Maserati Chrono Watch", category: "Watches", brand: "Maserati", price: 5499, discount: 18, description: "Bold chronograph watch with luxury finish.", images: ["https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=800&q=80"], featured: true, fabric: "Stainless steel case and strap", fit: "Adjustable bracelet", washCare: "Wipe with a soft dry cloth", sizes: ["One size"], color: "Silver", sku: "TBS-MS-WATCH-05", origin: "Imported", returnPolicy: "7 day exchange on unused items", technicalDetails: ["Chronograph-inspired dial", "Mineral glass", "Secure fold-over clasp"] },
+    { id: "p6", name: "CK Leather Wallet", category: "Accessories", brand: "CK", price: 1299, discount: 0, description: "Compact leather wallet with subtle branding.", images: ["https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=800&q=80"], featured: false, fabric: "Textured faux leather", fit: "Slim bi-fold", washCare: "Clean with dry cloth only", sizes: ["One size"], color: "Black", sku: "TBS-CK-WALLET-06", origin: "India", returnPolicy: "7 day exchange on unused items", technicalDetails: ["Multiple card slots", "Cash compartment", "Compact pocket-friendly profile"] }
   ];
 
   const DEFAULT_MARKETING = {
@@ -57,9 +57,10 @@
     if (!read(KEYS.orders, null)) write(KEYS.orders, []);
     if (!read(KEYS.coupons, null)) write(KEYS.coupons, [{ id: "c1", code: "WELCOME10", type: "percent", value: 10, minOrder: 1500, active: true, expiresAt: "" }]);
     if (!read(KEYS.marketing, null)) write(KEYS.marketing, DEFAULT_MARKETING);
+    normalizeProducts();
   }
 
-  const getProducts = () => read(KEYS.products, []);
+  const getProducts = () => read(KEYS.products, []).map(enrichProduct);
   const getCategories = () => read(KEYS.categories, DEFAULT_CATEGORIES);
   const getUsers = () => read(KEYS.users, []);
   const setUsers = (v) => write(KEYS.users, v);
@@ -71,6 +72,56 @@
   const getMarketing = () => read(KEYS.marketing, DEFAULT_MARKETING);
   const getAppliedCoupon = () => read(KEYS.appliedCoupon, null);
   const setAppliedCoupon = (v) => v ? write(KEYS.appliedCoupon, v) : localStorage.removeItem(KEYS.appliedCoupon);
+
+  function splitList(value) {
+    if (Array.isArray(value)) return value.filter(Boolean);
+    return String(value || "").split(/[\n,]/).map((x) => x.trim()).filter(Boolean);
+  }
+
+  function detailDefaults(product) {
+    const category = product.category || "Clothing";
+    const isPerfume = category === "Perfumes";
+    const isWatch = category === "Watches";
+    const isAccessory = category === "Accessories";
+    return {
+      fabric: isPerfume ? "Eau de parfum" : isWatch ? "Stainless steel and mineral glass" : isAccessory ? "Premium synthetic leather or plated hardware" : "Cotton-rich breathable fabric",
+      fit: isPerfume ? "Long-lasting fragrance" : isWatch ? "Adjustable fit" : isAccessory ? "Everyday carry fit" : "Regular fit",
+      washCare: isPerfume ? "Store away from direct sunlight" : isWatch ? "Wipe clean with a soft dry cloth" : isAccessory ? "Clean gently with a dry cloth" : "Machine wash cold, dry in shade",
+      sizes: isPerfume ? ["100 ml"] : isWatch || isAccessory ? ["One size"] : ["S", "M", "L", "XL"],
+      color: product.color || "As shown",
+      sku: product.sku || `TBS-${String(product.brand || "GEN").slice(0, 3).toUpperCase()}-${String(product.id || Date.now()).toUpperCase()}`,
+      origin: product.origin || "India",
+      returnPolicy: product.returnPolicy || (isPerfume ? "No return once seal is opened" : "7 day exchange on unused items"),
+      technicalDetails: splitList(product.technicalDetails).length ? splitList(product.technicalDetails) : [
+        isPerfume ? "Premium fragrance profile" : isWatch ? "Durable daily-wear construction" : "Comfortable daily-wear finish",
+        isPerfume ? "Designed for evening and occasion wear" : isWatch ? "Secure adjustable closure" : "Soft handfeel with clean stitching",
+        "Quality checked before dispatch"
+      ]
+    };
+  }
+
+  function enrichProduct(product) {
+    const d = detailDefaults(product);
+    return {
+      ...product,
+      images: product.images && product.images.length ? product.images : ["https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80"],
+      fabric: product.fabric || d.fabric,
+      fit: product.fit || d.fit,
+      washCare: product.washCare || d.washCare,
+      sizes: splitList(product.sizes).length ? splitList(product.sizes) : d.sizes,
+      color: product.color || d.color,
+      sku: product.sku || d.sku,
+      origin: product.origin || d.origin,
+      returnPolicy: product.returnPolicy || d.returnPolicy,
+      technicalDetails: splitList(product.technicalDetails).length ? splitList(product.technicalDetails) : d.technicalDetails
+    };
+  }
+
+  function normalizeProducts() {
+    const raw = read(KEYS.products, []);
+    const normalized = raw.map(enrichProduct);
+    if (JSON.stringify(raw) !== JSON.stringify(normalized)) write(KEYS.products, normalized);
+  }
 
   function currentUserId() {
     const s = read(KEYS.userSession, null);
@@ -242,7 +293,18 @@
   function renderWishlist() {
     const ids = getWishlist();
     const list = ids.map((id) => getProducts().find((p) => p.id === id)).filter(Boolean);
-    $("wishlistGrid").innerHTML = list.length ? list.map(productCard).join("") : "<p>Your wishlist is empty.</p>";
+    $("wishlistGrid").innerHTML = list.length ? list.map(productCard).join("") : emptyState("far fa-heart", "Your wishlist is empty", "Save products you like and they will appear here.", "shop", "Start Shopping");
+  }
+
+  function emptyState(icon, title, text, navTarget, actionLabel) {
+    return `
+      <div class="empty-state">
+        <div class="empty-state-icon"><i class="${icon}"></i></div>
+        <h3>${title}</h3>
+        <p>${text}</p>
+        ${navTarget ? `<a href="#${navTarget}" data-nav="${navTarget}" class="btn btn-gold">${actionLabel}</a>` : ""}
+      </div>
+    `;
   }
 
   function renderBanners() {
@@ -310,7 +372,7 @@
   function renderCart() {
     const { detailed, subtotal, savings, delivery, total, coupon } = cartData();
     if (!detailed.length) {
-      $("cartItems").innerHTML = "<p>Your cart is empty.</p>";
+      $("cartItems").innerHTML = emptyState("fas fa-shopping-bag", "Your cart is empty", "Add a few styles to your cart and come back here to checkout.", "shop", "Shop Products");
       $("cartSummary").innerHTML = "";
       return;
     }
@@ -338,7 +400,7 @@
 
   function renderCheckoutSummary() {
     const { detailed, subtotal, delivery, total, coupon } = cartData();
-    if (!detailed.length) { $("checkoutSummary").innerHTML = "<p>No items in cart yet.</p>"; return; }
+    if (!detailed.length) { $("checkoutSummary").innerHTML = emptyState("fas fa-receipt", "No checkout items", "Your order summary will appear after you add products to cart.", "shop", "Browse Store"); return; }
     $("checkoutSummary").innerHTML = `
       <h3><i class="fas fa-receipt"></i> Order Summary</h3>
       ${detailed.map(({ item, product, final }) => `<div class="summary-row"><span>${product.name} x${item.qty}</span><span>${money(final * item.qty)}</span></div>`).join("")}
@@ -350,29 +412,58 @@
   }
 
   function renderProductDetail(productId) {
+    const existingSticky = document.getElementById('stickyAddCart');
+    if (existingSticky) existingSticky.remove();
     const p = getProducts().find((x) => x.id === productId);
-    if (!p) { $("productDetail").innerHTML = "<p>Product not found.</p>"; return; }
+    if (!p) { $("productDetail").innerHTML = emptyState("fas fa-box-open", "Product not found", "This product is no longer available.", "shop", "Back to Shop"); return; }
     const reviews = getReviews().filter((r) => r.productId === p.id).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     const r = ratingOf(p.id);
     const inWish = getWishlist().includes(p.id);
     const isMobile = window.innerWidth <= 760;
+    const detailRows = [
+      ["Fabric", p.fabric],
+      ["Fit", p.fit],
+      ["Wash care", p.washCare],
+      ["Color", p.color],
+      ["Sizes", p.sizes.join(", ")],
+      ["SKU", p.sku],
+      ["Origin", p.origin],
+      ["Return", p.returnPolicy]
+    ].filter(([, value]) => value);
 
     $("productDetail").innerHTML = `
-      <div>
+      <div class="product-gallery-panel">
         <img id="mainProductImage" class="gallery-main" src="${p.images[0]}" alt="${p.name}" />
         <div class="thumb-row">${p.images.map((img, i) => `<img class="thumb ${i === 0 ? "active" : ""}" data-thumb="${img}" src="${img}" alt="thumb ${i + 1}" />`).join("")}</div>
       </div>
       <div class="detail-info">
-        <p>${p.brand} | ${p.category}</p>
+        <p class="eyebrow">${p.brand} | ${p.category}</p>
         <h2>${p.name}</h2>
         <div class="rating-line">${r.count ? `${stars(r.avg)} ${r.avg.toFixed(1)} (${r.count} reviews)` : "No ratings yet"}</div>
         <div class="price-wrap"><span class="price">${money(finalPrice(p))}</span>${finalPrice(p) < p.price ? `<span class="old-price">${money(p.price)}</span>` : ""}</div>
-        <p>${p.description}</p>
+        <p class="detail-description">${p.description}</p>
+        <div class="size-row">
+          ${p.sizes.map((size) => `<span>${size}</span>`).join("")}
+        </div>
         <div class="card-actions" id="desktopProductActions">
           <button class="btn btn-gold" data-add-cart="${p.id}"><i class="fas fa-cart-plus"></i> Add to Cart</button>
           <button class="btn btn-outline ${inWish ? "active-btn" : ""}" data-wish-toggle="${p.id}"><i class="${inWish ? "fas" : "far"} fa-heart"></i> ${inWish ? "Wishlisted" : "Add to Wishlist"}</button>
           <button class="btn btn-outline" id="goCart"><i class="fas fa-shopping-cart"></i> Go to Cart</button>
         </div>
+
+        <section class="product-spec-card">
+          <h3><i class="fas fa-clipboard-list"></i> Product Details</h3>
+          <div class="spec-grid">
+            ${detailRows.map(([label, value]) => `<div><span>${label}</span><strong>${value}</strong></div>`).join("")}
+          </div>
+        </section>
+
+        <section class="product-spec-card">
+          <h3><i class="fas fa-circle-info"></i> Technical Details</h3>
+          <ul class="technical-list">
+            ${p.technicalDetails.map((item) => `<li>${item}</li>`).join("")}
+          </ul>
+        </section>
 
         <section class="review-box">
           <h3><i class="fas fa-star"></i> Product Reviews</h3>
@@ -394,8 +485,6 @@
         <button class="btn btn-gold" data-add-cart="${p.id}"><i class="fas fa-cart-plus"></i> Add to Cart</button>
         <button class="btn btn-outline ${inWish ? "active-btn" : ""}" data-wish-toggle="${p.id}"><i class="${inWish ? "fas" : "far"} fa-heart"></i></button>
       `;
-      const existing = document.getElementById('stickyAddCart');
-      if (existing) existing.remove();
       document.getElementById('productDetail').appendChild(stickyBar);
     }
   }
@@ -411,6 +500,7 @@
     if (name === "checkout") renderCheckoutSummary();
     highlightBottomNav(name);
     highlightMainNav(name);
+    document.body.classList.toggle("fill-screen-view", ["wishlist", "cart", "checkout"].includes(name));
   }
 
   function highlightBottomNav(viewName) {
@@ -526,7 +616,22 @@
       if (qty) { const cart = getCart(); const item = cart.find((i) => i.productId === qty.dataset.pid); if (item) { item.qty += Number(qty.dataset.qty); if (item.qty <= 0) setCart(cart.filter((i) => i.productId !== qty.dataset.pid)); else setCart(cart); renderCart(); renderCheckoutSummary(); } }
 
       const nav = e.target.closest("[data-nav]");
-      if (nav) { e.preventDefault(); location.hash = nav.dataset.nav; if (window.innerWidth <= 760) { $("mainNav").classList.remove("open"); $("mobileMenuBtn").setAttribute("aria-expanded", "false"); } }
+      if (nav) {
+        e.preventDefault();
+        const target = nav.dataset.nav;
+        if (target === "home") {
+          location.hash = "home";
+          showView("home");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          location.hash = target;
+        }
+        if (window.innerWidth <= 760) {
+          $("mainNav").classList.remove("open");
+          $("mobileMenuBtn").setAttribute("aria-expanded", "false");
+          $("mobileMenuBtn").innerHTML = '<i class="fas fa-bars"></i>';
+        }
+      }
 
       const chip = e.target.closest("[data-brand-filter]");
       if (chip) { location.hash = "shop"; setTimeout(() => { $("brandFilter").value = chip.dataset.brandFilter; renderShop(); }, 10); }

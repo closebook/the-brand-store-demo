@@ -18,6 +18,7 @@
   const read = (k, f) => { try { const raw = localStorage.getItem(k); return raw ? JSON.parse(raw) : f; } catch (_) { return f; } };
   const write = (k, v) => localStorage.setItem(k, JSON.stringify(v));
   const money = (n) => `₹${Number(n).toLocaleString("en-IN")}`;
+  const splitList = (value) => String(value || "").split(/[\n,]/).map((x) => x.trim()).filter(Boolean);
 
   function showToast(message) {
     const toast = $("toast");
@@ -241,7 +242,16 @@
       discount: Math.min(90, Math.max(0, Number($("discount").value || 0))),
       description: $("description").value.trim(),
       images: [image],
-      featured: $("featured").checked
+      featured: $("featured").checked,
+      fabric: $("fabric").value.trim(),
+      fit: $("fit").value.trim(),
+      washCare: $("washCare").value.trim(),
+      sizes: splitList($("sizes").value),
+      color: $("color").value.trim(),
+      sku: $("sku").value.trim(),
+      origin: $("origin").value.trim(),
+      returnPolicy: $("returnPolicy").value.trim(),
+      technicalDetails: splitList($("technicalDetails").value)
     };
 
     const products = getProducts();
@@ -314,6 +324,15 @@
         if (!p) return;
         $("productId").value = p.id; $("name").value = p.name; $("category").value = p.category; $("brand").value = p.brand; $("price").value = p.price;
         $("discount").value = p.discount || 0; $("description").value = p.description; $("imageUrl").value = p.images[0] || ""; $("featured").checked = !!p.featured;
+        $("fabric").value = p.fabric || "";
+        $("fit").value = p.fit || "";
+        $("washCare").value = p.washCare || "";
+        $("sizes").value = Array.isArray(p.sizes) ? p.sizes.join(", ") : (p.sizes || "");
+        $("color").value = p.color || "";
+        $("sku").value = p.sku || "";
+        $("origin").value = p.origin || "";
+        $("returnPolicy").value = p.returnPolicy || "";
+        $("technicalDetails").value = Array.isArray(p.technicalDetails) ? p.technicalDetails.join("\n") : (p.technicalDetails || "");
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
